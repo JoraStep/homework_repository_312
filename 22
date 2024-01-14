@@ -1,0 +1,21 @@
+# задача
+# реализовать класс
+# 	Класс Snowflake
+# 	Атрибуты: размер, форма.
+# 	Методы: change_size(new_size), change_shape(new_shape).
+# 	НЕОБЯЗАТЕЛЬНО: Интерфейс для изменения размера и формы снежинки
+
+class Snowflake:
+    def __init__(self, size: float, shape: str):
+        self.size = size
+        self.shape = shape
+
+    def change_size(self, new_size):
+        self.size = new_size
+
+    def change_shape(self, new_shape):
+        self.shape = new_shape
+
+
+snow_form = Snowflake(size=8.5, shape="circle")
+print(f"Параметры снежинки: размер - {snow_form.size}, форма - {snow_form.shape} ")
