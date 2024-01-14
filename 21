@@ -1,0 +1,29 @@
+# Задача 1
+# Класс Книга должен содержать информацию о названии, авторе и жанре книги.
+
+class Book:
+    def __init__(self, name, author, genre):
+        self.name = name
+        self.author = author
+        self.genre = genre
+
+
+my_book = Book(name='Кровь, пот и пиксели', author='Джейсон Шрейер', genre="non-fiction")
+print(f'My book: name - {my_book.name}, author - {my_book.author}, genre - {my_book.genre}.')
+
+# задача
+# Класс БанковскийАккаунт должен хранить информацию о владельце, балансе
+
+
+class BankAccount:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.balance = balance
+
+
+bank_account_owner = BankAccount(owner="Jensen Huang", balance=" 8,25 Billion $")
+print(f"Bank account: owner - {bank_account_owner.owner}, balance - {bank_account_owner.balance}")
+
+
+
+
