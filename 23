@@ -1,0 +1,52 @@
+# —------------------------------- Задача —--------------------------------#
+# задача
+# Создать класс "Book" с атрибутами "title", "author", "genre" и методами для чтения и
+# записи данных всех трех атрибутов, а также реализовать валидацию для атрибута "genre":
+# должно быть строкой не должно быть пустой строкой
+# и должно содержать наименование только из указанного списка [“фантастика”, “драма”, “проза”, "нехудожественный"]
+
+class Book:
+    def __init__(self, title, author, genre):
+        self.__title = title
+        self.__author = author
+        self.__genre = self.validate_genre(genre)
+
+    @staticmethod
+    def validate_genre(genre):
+        if type(genre) != str:
+            raise "genre must be str"
+        if genre not in ["фантастика", "драма", "проза", "нехудожественный"]:
+            raise "genre must be in this list "
+        if genre.isspace():
+            raise "must not be only space symbols"
+        return genre
+
+    def get_title(self):  # getter - read
+        return self.__title
+
+    def get_author(self):
+        return self.__author
+
+    def get_genre(self):
+        return self.__genre
+
+    def set_title(self, title):  # setter - write
+        self.__title = title
+
+    def set_author(self, author):
+        self.__author = author
+
+    def set_genre(self, genre):
+        self.__genre = self.validate_genre(genre)
+
+
+book = Book(title="Нажми Reset", author="Джейсон Шрейер", genre="нехудожественный")
+print(book.get_genre())
+
+try:
+    Book.validate_genre("сказка")
+    print("Жанр доступен")
+except:
+    print("Данный жанр отсутствует в текущем списке")
+
+
