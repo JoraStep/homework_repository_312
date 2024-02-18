@@ -1,0 +1,62 @@
+class Contact:
+    def __init__(self, name, phone):
+        self.name = name
+        self.phone_number = phone
+
+    def display_info(self):
+        print(f"Name: {self.name}, phone number: {self.phone_number}")
+
+
+class BusinessContact(Contact):
+    def __init__(self, name, phone, company):
+        super().__init__(name, phone)
+        self.company = company
+
+    def display_info(self):
+        # super().display_info()
+        # print(f"company: {self.company}")
+        print(f"Name: {self.name}, phone number: {self.phone_number}, company: {self.company}")
+
+
+class PhoneBook:
+    def __init__(self):
+        self.contacts = []
+
+    def add_contact(self, contact):
+        self.contacts.append(contact)
+
+    def remove_contact(self, name):
+        for contact in self.contacts:
+            if contact.name == name:
+                self.contacts.remove(contact)
+                print(f"Contact {name} is deleted")
+            return None
+
+    def find_contact(self, name):
+        for contact in self.contacts:
+            if contact.name == name:
+                return contact
+        return None
+
+    def display_contacts(self):
+        for contact in self.contacts:
+            contact.display_info()
+
+
+phone_book = PhoneBook()
+
+contact1 = Contact("Ivan Ivanov", "+7-999-777-66-55")
+business_contact = BusinessContact("Petr Petrov", "8-666-555-44-33", "Roga and copyta")
+phone_book.add_contact(contact1)
+phone_book.add_contact(business_contact)
+print("Список всех контактов")
+phone_book.display_contacts()
+phone_book.remove_contact("Ivan Ivanov")
+phone_book.display_contacts()
+search_contact = input("Введите имя контакта для поиска в телефонной книге: ")
+found_contact = phone_book.find_contact(search_contact)
+if found_contact:
+    print("найден контакт: ")
+    found_contact.display_info()
+else:
+    print(f"Контакт с запрашиваемым именем {search_contact} не найден")
