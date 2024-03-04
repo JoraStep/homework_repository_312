@@ -1,0 +1,40 @@
+# Задача 1: Управление банковским счетом
+# Реализуйте класс BankAccount, который представляет банковский счет.
+# Класс должен содержать атрибуты balance (баланс) и методы deposit (положить деньги на счет)
+# и withdraw (снять деньги со счета). Создайте собственный класс исключения InsufficientFundsError,
+# который будет возбуждаться при попытке снятия суммы, превышающей текущий баланс.
+
+class InsufficientFundsError(Exception):
+    pass
+
+
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
+
+    def deposit(self, amount):
+        if amount < 0:
+            raise ValueError("Amount should be positive")
+        self.balance += amount
+        print(f"Депозит в размере {amount}  выполнен. Текущий баланс: {self.balance}")
+
+    def withdraw(self, amount):
+        if amount < 0:
+            raise ValueError("Amount should be positive")
+        if amount > self.balance:
+            raise InsufficientFundsError("Недостаточно средств на счете.")
+
+        self.balance -= amount
+        print(f"Снятие средств в размере {amount}  выполнено. Текущий баланс: {self.balance}")
+
+
+
+try:
+    account = BankAccount(1000)
+    account.deposit(500)
+    account.withdraw(200)
+    account.withdraw(1500)  
+except InsufficientFundsError as e:
+    print(f"Ошибка: {e}")
+except ValueError as e:
+    print(f"Ошибка: {e}")
